@@ -3,28 +3,19 @@ import types
 
 def flat_generator(list_of_lists):
     count1 = 0
-    count2 = 0
+
     item = None
     while count1 < len(list_of_lists):
         if type(list_of_lists[count1]) == list:
-            if count2 < len(list_of_lists[count1]):
-                item = list_of_lists[count1][count2]
-                count2 += 1
-
-            else:
-                count1 += 1
-                count2 = 0
-                if count1 >= len(list_of_lists):
-                    raise StopIteration
-                else:
-                    item = list_of_lists[count1][count2]
-                    count2 += 1
-
+            for item in list_of_lists[count1]:
+                yield item
+            count1 += 1
         else:
             item = list_of_lists[count1]
             count1 += 1
-            count2 = 0
-        yield item
+            yield item
+
+
 
 def test_2():
 
