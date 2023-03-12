@@ -1,16 +1,50 @@
-# This is a sample Python script.
-
-# Press Shift+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
+import types
 
 
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
+def flat_generator(list_of_lists):
+    count1 = 0
+    count2 = 0
+    item = None
+    while count1 < len(list_of_lists):
+        if type(list_of_lists[count1]) == list:
+            if count2 < len(list_of_lists[count1]):
+                item = list_of_lists[count1][count2]
+                count2 += 1
+
+            else:
+                count1 += 1
+                count2 = 0
+                if count1 >= len(list_of_lists):
+                    raise StopIteration
+                else:
+                    item = list_of_lists[count1][count2]
+                    count2 += 1
+
+        else:
+            item = list_of_lists[count1]
+            count1 += 1
+            count2 = 0
+        yield item
+
+def test_2():
+
+    list_of_lists_1 = [
+        ['a', 'b', 'c'],
+        ['d', 'e', 'f', 'h', False],
+        [1, 2, None]
+    ]
+
+    for flat_iterator_item, check_item in zip(
+            flat_generator(list_of_lists_1),
+            ['a', 'b', 'c', 'd', 'e', 'f', 'h', False, 1, 2, None]
+    ):
+
+        assert flat_iterator_item == check_item
+
+    assert list(flat_generator(list_of_lists_1)) == ['a', 'b', 'c', 'd', 'e', 'f', 'h', False, 1, 2, None]
+
+    assert isinstance(flat_generator(list_of_lists_1), types.GeneratorType)
 
 
-# Press the green button in the gutter to run the script.
 if __name__ == '__main__':
-    print_hi('PyCharm')
-
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+    test_2()
