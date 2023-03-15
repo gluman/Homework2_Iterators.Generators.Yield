@@ -1,0 +1,4 @@
+name func: flat_generator; date: 2023-03-15; time: 22:33:02; *args: ([['a', 'b', 'c'], ['d', 'e', 'f', 'h', False], [1, 2, None]],); **kwargs: {}; result: <generator object flat_generator at 0x7f420e47e6c0>; 
+name func: flat_generator; date: 2023-03-15; time: 22:33:02; *args: ([['a', 'b', 'c'], ['d', 'e', 'f', 'h', False], [1, 2, None]],); **kwargs: {}; result: <generator object flat_generator at 0x7f420e47e6c0>; 
+name func: flat_generator; date: 2023-03-15; time: 22:33:02; *args: ([['a', 'b', 'c'], ['d', 'e', 'f', 'h', False], [1, 2, None]],); **kwargs: {}; result: <generator object flat_generator at 0x7f420e47e6c0>; 
+name func: test_2; date: 2023-03-15; time: 22:33:02; *args: (); **kwargs: {}; result: None; 
