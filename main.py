@@ -1,6 +1,30 @@
 import types
+import os
+import datetime
 
+def logger(old_function):
+    path = 'main.log'
+    if os.path.exists(path):
+        os.remove(path)
+    def new_function(*args, **kwargs):
 
+        result = old_function(*args, **kwargs)
+        log_text =f"name func: {old_function.__name__}; " \
+                  f"date: {datetime.date.today()}; " \
+                  f"time: {datetime.datetime.now().time().strftime('%H:%M:%S')}; " \
+                  f"*args: {args}; " \
+                  f"**kwargs: {kwargs}; " \
+                  f"result: {result}; " \
+                  f"\n"
+
+        with open(path, 'a') as f:
+            f.writelines(log_text)
+
+        return result
+
+    return new_function
+
+@logger
 def flat_generator(list_of_lists):
     count1 = 0
 
@@ -16,6 +40,7 @@ def flat_generator(list_of_lists):
             yield item
 
 
+@logger
 def test_2():
 
     list_of_lists_1 = [
